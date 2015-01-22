@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation &mdash; LN Common 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="LN Common 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="Example" href="example.html" />
+    <link rel="prev" title="Welcome to LN Common’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="example.html" title="Example"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to LN Common’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">LN Common 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<p>Dowdload the source code package from Lemaker Github, unzip:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd LNcommon
+</pre></div>
+</div>
+<p>Install <cite>LNcommon</cite> (for Python 3) with the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo python3 setup.py install
+</pre></div>
+</div>
+<p>Install <cite>LNcommon</cite> (for Python 2) with the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo python setup.py install
+</pre></div>
+</div>
+</div>
+<div class="section" id="enable-the-spi-module">
+<h2>Enable the SPI module<a class="headerlink" href="#enable-the-spi-module" title="Permalink to this headline">¶</a></h2>
+<p>LN Digitals boards communicate with the Banana Pi through the SPI interface.
+The SPI interface driver is included in the latest Banana Pi distributions
+but is not enabled by default. You can load the SPI driver manually by running:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo modprobe spi-sun7i
+</pre></div>
+</div>
+<p>And you can permanently enable it by commenting out the
+<tt class="docutils literal"><span class="pre">blacklist</span> <span class="pre">spi-sun7i</span></tt> line in <tt class="docutils literal"><span class="pre">/etc/modprobe.d/bpi-blacklist.conf</span></tt>.</p>
+<blockquote>
+<div>$ sudo nano /etc/modprobe.d/bpi-blacklist.conf</div></blockquote>
+<dl class="docutils">
+<dt>Then enable spi modules by adding <tt class="docutils literal"><span class="pre">spi-sun7i</span></tt> and <tt class="docutils literal"><span class="pre">spidev</span></tt> to <tt class="docutils literal"><span class="pre">/etc/modules</span></tt></dt>
+<dd>$ sudo nano /etc/modules</dd>
+</dl>
+<p>The /dev/spidev* devices should now appear but they require special privileges
+for the user <em>bananapi</em> to access them. You can set these up by adding the following
+<a class="reference external" href="https://wiki.debian.org/udev">udev rule</a> to
+<tt class="docutils literal"><span class="pre">/etc/udev/rules.d/50-spi.rules</span></tt></p>
+<blockquote>
+<div>KERNEL==&#8221;spidev*&#8221;, GROUP=&#8221;spi&#8221;, MODE=&#8221;0660&#8221;</div></blockquote>
+<p>with the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo nano /etc/udev/rules.d/50-spi.rules
+</pre></div>
+</div>
+<p>Then create the spi group and add the user <em>bananapi</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo groupadd spi
+$ sudo gpasswd -a bananapi spi
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To enable other users to access SPI devices, you can add them to the
+<tt class="docutils literal"><span class="pre">spi</span></tt> group with <tt class="docutils literal"><span class="pre">gpasswd</span> <span class="pre">-a</span> <span class="pre">otheruser</span> <span class="pre">spi</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="enable-gpio-access">
+<h2>Enable GPIO access<a class="headerlink" href="#enable-gpio-access" title="Permalink to this headline">¶</a></h2>
+<p>Interrupts work by monitoring the GPIO pins. You&#8217;ll need to give the user <em>bananapi</em>
+access to these by adding the following udev rule (all on one line) to
+<tt class="docutils literal"><span class="pre">/etc/udev/rules.d/51-gpio.rules</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>SUBSYSTEM==&quot;gpio*&quot;, PROGRAM=&quot;
+/bin/sh -c &#39;chown -R root:gpio /sys/class/gpio &amp;&amp;
+chmod -R 770 /sys/class/gpio;
+chown -R root:gpio /sys/devices/platform/gpio-sunxi/gpio &amp;&amp;
+chmod -R 770 /sys/devices/platform/gpio-sunxi/gpio&#39;&quot;
+</pre></div>
+</div>
+<p>with the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo nano /etc/udev/rules.d/51-gpio.rules
+</pre></div>
+</div>
+<p>Then create the gpio group and add the user <em>bananapi</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo groupadd gpio
+$ sudo gpasswd -a bananapi gpio
+</pre></div>
+</div>
+<p>You will have to reboot after setting up SPI and GPIO permissions.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#install">Install</a></li>
+<li><a class="reference internal" href="#enable-the-spi-module">Enable the SPI module</a></li>
+<li><a class="reference internal" href="#enable-gpio-access">Enable GPIO access</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to LN Common&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="example.html"
+                        title="next chapter">Example</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/installation.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="example.html" title="Example"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to LN Common’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">LN Common 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Lemaker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reference &mdash; LN Common 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="LN Common 0.1.0 documentation" href="index.html" />
+    <link rel="prev" title="Example" href="example.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="example.html" title="Example"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">LN Common 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-LNcommon.core">
+<span id="core"></span><h2>Core<a class="headerlink" href="#module-LNcommon.core" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="LNcommon.core.get_bit_mask">
+<tt class="descclassname">LNcommon.core.</tt><tt class="descname">get_bit_mask</tt><big>(</big><em>bit_num</em><big>)</big><a class="headerlink" href="#LNcommon.core.get_bit_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns as bit mask with bit_num set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bit_num</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; The bit number.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">int &#8211; the bit mask</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">RangeError</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">bin</span><span class="p">(</span><span class="n">LNcommon</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">get_bit_mask</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LNcommon</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">get_bit_mask</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">bin</span><span class="p">(</span><span class="n">LNcommon</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">get_bit_mask</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">&#39;0b1000&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="LNcommon.core.get_bit_num">
+<tt class="descclassname">LNcommon.core.</tt><tt class="descname">get_bit_num</tt><big>(</big><em>bit_pattern</em><big>)</big><a class="headerlink" href="#LNcommon.core.get_bit_num" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the lowest bit num from a given bit pattern. Returns None if no
+bits set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bit_pattern</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; The bit pattern.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">int &#8211; the bit number</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None &#8211; no bits set</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">LNcommon</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">get_bit_num</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LNcommon</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">get_bit_num</span><span class="p">(</span><span class="mi">0</span><span class="n">b1</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LNcommon</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">get_bit_num</span><span class="p">(</span><span class="mi">0</span><span class="n">b11000</span><span class="p">)</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="LNcommon.core.sleep_microseconds">
+<tt class="descclassname">LNcommon.core.</tt><tt class="descname">sleep_microseconds</tt><big>(</big><em>microseconds</em><big>)</big><a class="headerlink" href="#LNcommon.core.sleep_microseconds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sleeps for the given number of microseconds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>microseconds</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of microseconds to sleep for.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-LNcommon.spi">
+<span id="spi"></span><h2>SPI<a class="headerlink" href="#module-LNcommon.spi" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="LNcommon.spi.SPIDevice">
+<em class="property">class </em><tt class="descclassname">LNcommon.spi.</tt><tt class="descname">SPIDevice</tt><big>(</big><em>bus=0</em>, <em>chip_select=0</em>, <em>spi_callback=None</em><big>)</big><a class="headerlink" href="#LNcommon.spi.SPIDevice" title="Permalink to this definition">¶</a></dt>
+<dd><p>An SPI Device at /dev/spi&lt;bus&gt;.&lt;chip_select&gt;.</p>
+<dl class="method">
+<dt id="LNcommon.spi.SPIDevice.spisend">
+<tt class="descname">spisend</tt><big>(</big><em>bytes_to_send</em><big>)</big><a class="headerlink" href="#LNcommon.spi.SPIDevice.spisend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends bytes via the SPI bus.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bytes_to_send</strong> (<em>bytes</em>) &#8211; The bytes to send on the SPI device.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">bytes &#8211; returned bytes from SPI device</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">InitError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="interrupts">
+<h2>Interrupts<a class="headerlink" href="#interrupts" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="mcp23s17">
+<h2>MCP23S17<a class="headerlink" href="#mcp23s17" title="Permalink to this headline">¶</a></h2>
+<p>Consult the datasheet for more information.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Reference</a><ul>
+<li><a class="reference internal" href="#module-LNcommon.core">Core</a></li>
+<li><a class="reference internal" href="#module-LNcommon.spi">SPI</a></li>
+<li><a class="reference internal" href="#interrupts">Interrupts</a></li>
+<li><a class="reference internal" href="#mcp23s17">MCP23S17</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="example.html"
+                        title="previous chapter">Example</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/reference.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="example.html" title="Example"
+             >previous</a> |</li>
+        <li><a href="index.html">LN Common 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Lemaker.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

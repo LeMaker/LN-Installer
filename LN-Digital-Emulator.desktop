@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.1.0
+Type=Application
+Terminal=false
+Exec=sudo /usr/local/bin/LN-Digital-Emulator
+Name=LN-Digital-Emulator
+Icon=/home/bananapi/photos/LN_Digital_Emulator.png
+Categories=Education;Programming;

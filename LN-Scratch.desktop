@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.1.0
+Type=Application
+Terminal=false
+Exec=scratch --document "/home/bananapi/ScratchProjects/LN-demo.sb"
+Name=LN-Scratch
+Icon=scratch
+Categories=Education;Programming;
+Name[en_HK]=LN-Scratch
