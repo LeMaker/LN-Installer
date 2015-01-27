@@ -20,7 +20,7 @@ os.system("sudo rm /home/bananapi/photos/Lemakerlogo.xpm")
 os.system("sudo rm /home/bananapi/photos/LN_Digital_Emulator.png")
 os.system("sudo rm /home/bananapi/photos/LN_Digital_Scratch_Handler.png")
 
-os.chdir("/home/bananapi/Desktop"):
+os.chdir("/home/bananapi/Desktop")
 os.system("sudo rm /home/bananapi/Desktop/LN-Digital-Emulator.desktop")
 os.system("sudo rm /home/bananapi/Desktop/LN-Scratch-Handler.desktop")
 os.system("sudo rm /home/bananapi/Desktop/LN-Scratch.desktop")
